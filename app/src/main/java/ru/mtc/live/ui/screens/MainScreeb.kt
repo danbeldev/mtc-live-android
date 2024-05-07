@@ -68,7 +68,7 @@ fun MainScreen(network: MainNetwork) {
         locationPermission.launchPermissionRequest()
     }
 
-    LaunchedEffect(key1 = venueFeaturesFilter) {
+    LaunchedEffect(key1 = venueFeaturesFilter.size) {
         venues = network.getAllVenues(venueFeaturesFilter.map { it.name })
     }
 

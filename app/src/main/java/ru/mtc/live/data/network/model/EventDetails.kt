@@ -1,7 +1,5 @@
 package ru.mtc.live.data.network.model
 
-import java.util.Date
-
 data class EventDetails(
     val id: Int,
     val name: String,
@@ -29,7 +27,7 @@ data class Person(
     val middleName: String?,
     val photo: String?
 ) {
-    fun getFIO() = lastName + " " + firstName + " " + (middleName ?: "")
+    fun getName() = "$firstName $lastName"
 }
 
 data class PersonPost(

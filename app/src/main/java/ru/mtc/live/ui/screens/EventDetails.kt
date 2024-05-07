@@ -77,35 +77,6 @@ fun EventDetails(
             }
         }
 
-        details?.description?.let { description ->
-            Spacer(modifier = Modifier.height(5.dp))
-
-            Text(
-                text = "Описание",
-                fontWeight = FontWeight.W900,
-                fontSize = 20.sp,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        start = 15.dp,
-                        bottom = 5.dp,
-                        top = 5.dp
-                    ),
-                textAlign = TextAlign.Start
-            )
-
-            Text(
-                text = description,
-                textAlign = TextAlign.Start,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        horizontal = 15.dp,
-                        vertical = 5.dp
-                    )
-            )
-        }
-
         if(details!!.schedules.isNotEmpty()) {
             Spacer(modifier = Modifier.height(5.dp))
 
@@ -135,6 +106,35 @@ fun EventDetails(
                     }
                 }
             }
+        }
+
+        details?.description?.let { description ->
+            Spacer(modifier = Modifier.height(5.dp))
+
+            Text(
+                text = "Описание",
+                fontWeight = FontWeight.W900,
+                fontSize = 20.sp,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        start = 15.dp,
+                        bottom = 5.dp,
+                        top = 5.dp
+                    ),
+                textAlign = TextAlign.Start
+            )
+
+            Text(
+                text = description,
+                textAlign = TextAlign.Start,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        horizontal = 15.dp,
+                        vertical = 5.dp
+                    )
+            )
         }
 
         if(details!!.persons.isNotEmpty()) {
@@ -174,7 +174,7 @@ fun EventDetails(
                             }
 
                             Text(
-                                text = person.person.getFIO(),
+                                text = person.person.getName(),
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.W900,
                                 modifier = Modifier.padding(3.dp),
