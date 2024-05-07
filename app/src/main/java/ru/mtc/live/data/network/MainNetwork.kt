@@ -9,11 +9,14 @@ import retrofit2.http.Query
 import ru.mtc.live.data.network.model.Event
 import ru.mtc.live.data.network.model.EventDetails
 import ru.mtc.live.data.network.model.Venue
+import ru.mtc.live.data.network.model.VenueFeature
 
 interface MainNetwork {
 
     @GET("/mtc-live/v1.0/venues")
-    suspend fun getAllVenues(): List<Venue>
+    suspend fun getAllVenues(
+        @Query("features") features: List<String>
+    ): List<Venue>
 
     @GET("/mtc-live/v1.0/events")
     suspend fun getAllEvents(

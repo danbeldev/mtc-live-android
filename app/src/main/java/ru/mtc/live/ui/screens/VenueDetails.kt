@@ -1,9 +1,11 @@
 package ru.mtc.live.ui.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
@@ -21,6 +23,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -51,28 +55,53 @@ fun VenueDetails(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Start
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                IconButton(
-                    modifier = Modifier.padding(5.dp),
-                    onClick = {
-                        if(event != null)
-                            event = null
-                        else
-                            onBack()
-                    }
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
-                        contentDescription = null
+                    IconButton(
+                        modifier = Modifier.padding(5.dp),
+                        onClick = {
+                            if(event != null)
+                                event = null
+                            else
+                                onBack()
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
+                            contentDescription = null
+                        )
+                    }
+
+                    Text(
+                        text = if(event != null) event!!.name else venue.name,
+                        fontWeight = FontWeight.W900,
+                        fontSize = 20.sp
                     )
                 }
 
-                Text(
-                    text = if(event != null) event!!.name else venue.name,
-                    fontWeight = FontWeight.W900,
-                    fontSize = 20.sp
-                )
+                if(event == null) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        venue.features.forEach { feature ->
+                            Card(
+                                modifier = Modifier.padding(3.dp),
+                                border = BorderStroke(2.dp, Color.Red)
+                            ) {
+                                Icon(
+                                    painter = painterResource(id = feature.icon),
+                                    contentDescription = null,
+                                    modifier = Modifier
+                                        .size(35.dp)
+                                        .padding(5.dp)
+                                )
+                            }
+                        }
+                    }
+                }
             }
         }
 

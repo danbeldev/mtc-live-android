@@ -1,6 +1,8 @@
 package ru.mtc.live.data.network.model
 
+import androidx.annotation.DrawableRes
 import com.google.android.gms.maps.model.LatLng
+import ru.mtc.live.R
 
 data class Venue(
     val id: Int,
@@ -14,7 +16,7 @@ data class Venue(
     }
 }
 
-enum class VenueFeature {
-    WHEELCHAIR,
-    BLIND
+enum class VenueFeature(@DrawableRes val icon: Int) {
+    WHEELCHAIR(R.drawable.wheelchair),
+    BLIND(R.drawable.eye)
 }
